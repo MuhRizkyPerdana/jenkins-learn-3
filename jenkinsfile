@@ -1,0 +1,38 @@
+pipeline {
+    agent any 
+    stages {
+        stage('Build') { 
+            steps {
+                echo "Build App" 
+                sleep (10)
+            }
+        }
+        stage('Test') { 
+            parallel {
+                stage('Test 1') {
+                    steps {
+                        echo "On Branch A"
+                        sleep (10)
+                    }
+                }
+                stage('Test 2') {
+                    steps {
+                        echo "On Branch B"
+                        sleep (10)
+                    }
+                }
+                stage('Test 3') {
+                    steps {
+                        echo "On Branch C"
+                        sleep (10)
+                    }
+                }
+            }
+        }
+        stage('Deploy') { 
+            steps {
+                echo "Deploy App" 
+            }
+        }
+    }
+}
